@@ -5,16 +5,18 @@ Creare una funzione che restituisce un array con 15 numeri casuali, tenendo cont
 
 <?php
 
-function randomNum()
+function randomNum($min, $max, $len)
 {
+    $numbers = [];
+    while (count($numbers) < $len) {
+        $random = rand($min, $max);
 
-    $numbers = range(1, 50);
-    shuffle($numbers);
-    $numbers = array_slice($numbers, 0, 15);
-
+        if (!in_array($random, $numbers)) {
+            $numbers[] = $random;
+        }
+    }
     return ($numbers);
 }
-
 
 ?>
 
@@ -31,7 +33,7 @@ function randomNum()
 </head>
 
 <body>
-    <?php foreach (randomNum() as $number) : ?>
+    <?php foreach (randomNum(1, 50, 15) as $number) : ?>
 
         <ul>
             <li><?= $number ?></li>
